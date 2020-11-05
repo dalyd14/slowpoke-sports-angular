@@ -1,0 +1,84 @@
+<div *ngIf="error" class="alert alert-danger register-form">
+    <p>{{ error }}</p>
+</div>
+<form #registerForm="ngForm" class="register-form" (ngSubmit)="onSubmit(registerForm)">
+    <div class="form-group">
+        <mat-form-field class="register-input">
+            <mat-label>First Name</mat-label>
+            <input
+                matInput
+                id="firstName"
+                class="form-control"
+                ngModel
+                name="firstName"
+                required
+                >
+        </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field class="register-input">
+            <mat-label>Last Name</mat-label>
+            <input
+                matInput
+                id="lastName"
+                class="form-control"
+                ngModel
+                name="lastName"
+                required
+                >
+        </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field class="register-input">
+            <mat-label>Email</mat-label>
+            <input
+                matInput
+                type="email"
+                id="email"
+                class="form-control"
+                ngModel
+                name="email"
+                required
+                email>
+        </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field class="register-input">
+            <mat-label>Password</mat-label>
+            <input 
+                matInput
+                type="password"
+                id="password"
+                class="form-control"
+                ngModel
+                name="password"
+                required
+                minlength="6"
+                password
+                #password="ngModel">
+        </mat-form-field>    
+    </div>
+    <div class="form-group">
+        <mat-form-field class="register-input">
+            <mat-label>Confirm Password</mat-label>
+            <input 
+                matInput
+                type="password"
+                id="confirmPassword"
+                class="form-control"
+                ngModel
+                name="confirmPassword"
+                required
+                minlength="6"
+                password
+                #confirmPassword="ngModel">
+            <mat-hint *ngIf="password.value != confirmPassword.value">Passwords must match</mat-hint>
+        </mat-form-field>    
+    </div>
+    <button mat-raised-button type="submit" [disabled]="password.value != confirmPassword.value || !registerForm.valid">
+        Sign Up
+    </button>
+    <button mat-raised-button type="reset" (click)="onResetForm(registerForm)">
+        Reset
+    </button>
+</form>

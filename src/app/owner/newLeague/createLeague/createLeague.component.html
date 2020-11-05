@@ -1,0 +1,72 @@
+<div *ngIf="createLeagueInProgress">
+  <mat-spinner [diameter]="100" style="margin: 0 auto;"></mat-spinner>
+</div>
+<div>
+  <form #createLeagueForm="ngForm" *ngIf="!createLeagueInProgress" class="createLeague-form" (ngSubmit)="onSubmit(createLeagueForm)">
+    <div class="form-group">
+        <mat-form-field class="createLeague-input">
+            <mat-label>League Name</mat-label>
+            <input
+                matInput
+                id="leagueName"
+                class="form-control"
+                ngModel
+                name="leagueName"
+                required
+                >
+        </mat-form-field>
+    </div>
+    <div class="createLeague-type-toggles">
+      <mat-button-toggle-group 
+        ngModel
+        id="newLeagueType"
+        name="newLeagueType" 
+        #group="matButtonToggleGroup"
+        vertical>
+          <mat-button-toggle *ngFor="let type of leagueTypes" value='{{ type.id }}' >{{ type.name }}</mat-button-toggle>
+      </mat-button-toggle-group>    
+    </div>
+    <div class="form-group">
+      <mat-checkbox 
+        [(ngModel)]="leaguePrivate"
+        id="leaguePrivate"
+        name="leaguePrivate">Private</mat-checkbox>    
+    </div>
+    <div class="form-group">
+        <mat-form-field class="createLeague-input">
+            <mat-label>Password</mat-label>
+            <input 
+                matInput
+                type="password"
+                id="leaguePassword"
+                class="form-control"
+                ngModel
+                name="leaguePassword"
+                [required]="leaguePrivate"
+                [disabled]="!leaguePrivate"
+                minlength="6"
+                password
+                >
+        </mat-form-field>    
+    </div>
+    <div class="form-group">
+      <mat-form-field class="createLeague-input">
+          <mat-label>Team Name</mat-label>
+          <input
+              matInput
+              id="ownerTeamName"
+              class="form-control"
+              ngModel
+              name="ownerTeamName"
+              required
+              >
+      </mat-form-field>
+    </div>
+    <button mat-raised-button type="submit" [disabled]="!createLeagueForm.valid">
+        Create League
+    </button>
+    <button mat-raised-button type="reset" (click)="onResetForm(createLeagueForm)">
+        Reset
+    </button>
+  </form>
+</div>

@@ -1,0 +1,17 @@
+<div style="padding-top: 10px; text-align: center; margin: 0 auto; max-width: 500px;">
+  <div>
+    <h1 style="text-align:center;">
+      Welcome to {{ thisLeagueInfo.leagueName }}!
+    </h1>    
+  </div>
+  <hr>
+  <div>
+    <h3 style="text-align:center; margin-bottom: 20px;">League Owners:</h3>    
+  </div>
+  <mat-card *ngFor="let owner of thisLeagueInfo.owners" class="owner-team-button">
+    <mat-card-header>
+      <mat-card-title style="text-align: left;">{{ owner.thisLeagueTeamName }}</mat-card-title>
+      <mat-card-subtitle style="text-align: left;">{{ owner.ownerFirstName + ' ' + owner.ownerLastName }}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>    
+</div>

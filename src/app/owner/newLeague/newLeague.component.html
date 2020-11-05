@@ -1,0 +1,8 @@
+<div class="newLeague-type-toggles">
+  <mat-button-toggle-group name="newLeagueType" #group="matButtonToggleGroup">
+      <mat-button-toggle value="joinLeague">Join League</mat-button-toggle>
+      <mat-button-toggle value="createLeague">Create New League</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+<app-joinLeague *ngIf="group.value=='joinLeague'"></app-joinLeague>
+<app-createLeague *ngIf="group.value=='createLeague'"></app-createLeague>

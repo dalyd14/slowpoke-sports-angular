@@ -1,0 +1,52 @@
+<div>
+  <div>
+    <mat-grid-list cols="12" rowHeight="30px">
+      <mat-grid-tile [colspan]="4"><strong>League Name</strong></mat-grid-tile>
+      <mat-grid-tile [colspan]="4"><strong>League Type</strong></mat-grid-tile>
+      <mat-grid-tile [colspan]="2"><strong>Commissioner</strong></mat-grid-tile>
+      <mat-grid-tile [colspan]="2"><strong>Accessibility</strong></mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div>
+    <mat-grid-list cols="12" rowHeight="30px">
+      <mat-grid-tile [colspan]="4">{{ currentLeagueOpened.leagueName }}</mat-grid-tile>
+      <mat-grid-tile [colspan]="4">{{ currentLeagueOpened.leagueTypeName }}</mat-grid-tile>
+      <mat-grid-tile [colspan]="2">{{ thisLeagueCommissioner }}</mat-grid-tile>
+      <mat-grid-tile [colspan]="2">{{ currentLeagueOpened.leaguePrivate ? 'Private' : 'Public' }}</mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
+<form #joinListLeagueForm="ngForm" *ngIf="currentLeagueOpened" (ngSubmit)="onSubmit(joinListLeagueForm)">
+  <div *ngIf="currentLeagueOpened.leaguePrivate" class="form-group">
+    <mat-form-field class="joinLeague-input">
+        <mat-label>Enter the League Password</mat-label>
+        <input 
+            matInput
+            type="password"
+            id="leaguePassword"
+            class="form-control"
+            ngModel
+            name="leaguePassword"
+            [required]="currentLeagueOpened.leaguePrivate"
+            password>
+    </mat-form-field>    
+  </div>
+  <div class="form-group">
+    <mat-form-field class="joinLeague-input">
+        <mat-label>Team Name</mat-label>
+        <input
+            matInput
+            id="ownerTeamName"
+            class="form-control"
+            ngModel
+            name="ownerTeamName"
+            required>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button type="submit" [disabled]="!joinListLeagueForm.valid">
+    Join League
+  </button>
+</form>
+<div *ngIf="errorMessage" class="alert alert-danger login-form">
+  <p>{{ errorMessage }}</p>
+</div>

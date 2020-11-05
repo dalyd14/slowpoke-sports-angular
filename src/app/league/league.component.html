@@ -1,0 +1,58 @@
+<!-- <ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item active">
+    <a [routerLink]="['./']" class="nav-link" data-toggle="tab" role="tab">
+      League Home
+    </a>
+  </li>
+  <li class="nav-item">
+    <a (click)="toLeagueSettings()" class="nav-link" data-toggle="tab" role="tab">
+      Settings
+    </a>
+  </li>
+  <li class="nav-item">
+    <a   class="nav-link" data-toggle="tab" role="tab">
+      Enter Draftroom
+    </a>
+  </li>
+</ul> -->
+
+<!-- <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a [routerLink]="['./']" class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" role="tab">League Home</a>
+    <a (click)="toLeagueSettings()" class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" role="tab">Settings</a>
+    <a (click)="toDraftRoom()" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" role="tab">Enter Draftroom</a>
+  </div>
+</nav> -->
+
+<nav mat-tab-nav-bar>
+  <a mat-tab-link [routerLink]="['./']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+    League Home
+  </a>
+  <a mat-tab-link [routerLink]="['settings']" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+    Settings
+  </a>
+  <a mat-tab-link (click)="toDraftRoom()">
+    Enter Draftroom
+  </a>
+</nav>
+
+<!-- <button mat-raised-button [routerLink]="['./']">
+  League Home
+</button>
+<button mat-raised-button (click)="toLeagueSettings()">
+  Settings
+</button>
+<button mat-raised-button (click)="toDraftRoom()">
+  Enter Draftroom
+</button> -->
+
+<div *ngIf="inProgress && !errorMessage">
+  <mat-spinner [diameter]="200" style="margin: 0 auto; top: 50px"></mat-spinner>
+</div>
+<div *ngIf="!inProgress && errorMessage" style="text-align:center">
+  <h4>{{ errorMessage }}</h4>
+</div>
+<div *ngIf="!inProgress && !errorMessage">
+  <router-outlet></router-outlet>
+</div>
+

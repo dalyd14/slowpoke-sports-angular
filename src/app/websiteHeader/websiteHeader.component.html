@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+
+  <div class="order-1 ml-2">
+    <a class="navbar-brand" routerLink=""><img src="assets/images/snail.png" height="40px"></a>
+  </div>
+  
+  <div class="order-2 mt-0">
+    <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>  
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li routerLinkActive="active" class="nav-item">
+          <a class="nav-link" routerLink="/NCAAF">NCAAF</a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+          <a class="nav-link" routerLink="/NFL">NFL</a>
+        </li>
+        <li *ngIf="isAuthenticated" routerLinkActive="active" class="nav-item">
+          <a class="nav-link" routerLink="/myteams">My Teams</a>
+        </li>
+      </ul>
+    </div>    
+  </div>
+  <div class="ml-auto order-4" style="display: table-cell;">
+    <button mat-icon-button [matMenuTriggerFor]="settings" *ngIf="isAuthenticated" style="height: 100%; display: inline-block; margin-right: 20px; vertical-align: middle;"><mat-icon style="vertical-align: middle; text-align: center;" class="header-icon">settings</mat-icon></button>
+    <a *ngIf="!isAuthenticated" routerLink="login"><mat-icon class="header-icon" style="height: 100%; vertical-align: middle;">account_circle</mat-icon></a>
+    <a *ngIf="isAuthenticated" (click)="onLogout()" style="height: 100%; display: inline-block; margin-right: 20px; vertical-align: middle;"><mat-icon style="vertical-align: middle; text-align: center;" class="header-icon">login</mat-icon></a>
+  </div>
+  <mat-menu #settings="matMenu">
+    <button mat-menu-item>
+      Account
+    </button>
+    <button mat-menu-item>
+      My Team Settings
+    </button>
+  </mat-menu>
+</nav>

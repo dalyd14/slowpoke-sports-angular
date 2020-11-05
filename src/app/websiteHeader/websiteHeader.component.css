@@ -1,0 +1,20 @@
+a {
+    cursor: pointer;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+
+.header-icon {
+    font-size: 30px;
+    color:rgb(175,175,175);
+    vertical-align: middle;
+    text-align: center;
+    height: 100%;
+}
+
+.header-icon:hover {
+    color:grey
+}

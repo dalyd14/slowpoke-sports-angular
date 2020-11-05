@@ -1,0 +1,40 @@
+
+.text-inside-grid {
+  position: absolute;
+  left: 5px;
+}
+
+.team-pic-inside-grid {
+  position: absolute;
+  right: 5px;
+}
+
+.team-button:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+.score-window {
+  position: sticky;
+  top: 0;
+}
+
+.win {
+  font-weight: bold;
+  color: rgb(23, 201, 32);
+}
+
+.loss {
+  font-weight: bold;
+  color: rgb(224, 21, 21);
+}
+
+.other {
+  font-weight: bold;
+  color: rgb(202, 184, 16);
+}

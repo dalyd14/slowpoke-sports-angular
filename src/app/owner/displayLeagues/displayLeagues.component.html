@@ -1,0 +1,23 @@
+<div *ngIf="isNull" style="display:flex; padding-top: 10px; align-items:center; vertical-align: middle; width:100%;">
+  <mat-label style="margin:auto; font-size: xx-large;">
+      No Teams Yet!
+  </mat-label>                         
+</div>
+<div *ngIf="!isNull" style="padding-top: 10px;">
+  <div *ngFor="let ownerLeague of myOwner.leagues" class="owner-league-button" (click)=onClick(ownerLeague.leagueID)>
+    <div>
+      <mat-grid-list cols="12" rowHeight="30px">
+        <mat-grid-tile [colspan]="4"><strong>Team Name</strong></mat-grid-tile>
+        <mat-grid-tile [colspan]="4"><strong>League Name</strong></mat-grid-tile>
+        <mat-grid-tile [colspan]="4"><strong>League Type</strong></mat-grid-tile>
+      </mat-grid-list>
+    </div>
+    <div>
+      <mat-grid-list cols="12" rowHeight="40px">
+        <mat-grid-tile [colspan]="4">{{ ownerLeague.ownerTeamName }}</mat-grid-tile>
+        <mat-grid-tile [colspan]="4">{{ ownerLeague.leagueName }}</mat-grid-tile>
+        <mat-grid-tile [colspan]="4">{{ ownerLeague.leagueTypeName }}</mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+</div>

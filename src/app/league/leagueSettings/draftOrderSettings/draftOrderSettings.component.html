@@ -1,0 +1,41 @@
+<div class="container" style="width: 1000px">
+  <div class="row" style="height: 35px;" *ngIf="isCommish">
+    <div class="col-2">
+      <button (click)="submitDraftOrder()">
+        Submit
+      </button>
+    </div>
+    <div class="col-2">
+      <button (click)="resetDraftOrder()">
+        Reset
+      </button>
+    </div>
+    <div class="col-4">
+      <button (click)="onSnakeOrder()">
+        Snake Based on First Round
+      </button>
+    </div>
+    <div class="col-4">
+      <button (click)="onMirrorOrder()">
+        Mirror Based on First Round
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="row" style="height: 30px; overflow: hidden; text-align: center; line-height: 30px;">
+      <div style="width: 30px"></div>
+      <div *ngFor="let owner of draftOrderInput.leagueInfo.owners, index as n" style="width: 80px; min-width: 80px; font-weight: bold;">{{ n+1 }}</div>
+    </div>
+    <div class="row" style="height: 60px;">
+      <div class="row" style="margin-left: 0;" *ngFor="let round of roundOrders, index as i">
+        <div style="width: 30px; text-align: center; line-height: 60px; font-weight: bold;">{{i+1}}</div>
+        <div style="padding: 0;" class="col">
+          <div cdkDropList id="{{i+1}}" cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListDisabled]="!isCommish">
+            <div class="example-box" *ngFor="let pick of roundOrders[i].roundOrder" cdkDrag>{{ ownerByID[pick].teamName }}</div>
+          </div>           
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>
+

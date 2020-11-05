@@ -1,0 +1,118 @@
+<div *ngIf="inProgress && !errorMessage">
+  <mat-spinner [diameter]="200" style="margin: 0 auto; top: 50px"></mat-spinner>
+</div>
+<div *ngIf="!inProgress && errorMessage">
+  <h4>{{ errorMessage }}</h4>
+</div>
+<div *ngIf="!inProgress && !errorMessage && results" class="row" style="width: 100%;">
+  <div class="column" style="width: 100%; padding-left: 20px; padding-right: 20px;">
+    <div style="margin-left:20px;">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let week of organized_results">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ week.week_date }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-grid-list cols="12" rowHeight="30px">
+            <mat-grid-tile [colspan]="3"></mat-grid-tile>
+            <mat-grid-tile [colspan]="4"><strong>Away Team</strong></mat-grid-tile>
+            <mat-grid-tile [colspan]="1"></mat-grid-tile>
+            <mat-grid-tile [colspan]="4"><strong>Home Team</strong></mat-grid-tile>
+          </mat-grid-list>
+          <div *ngFor="let game of week.week_games">
+            <mat-grid-list cols="12" rowHeight="30px">
+              <mat-grid-tile [colspan]="2">
+                <div class="text-inside-grid">
+                  {{ game.game_date }}
+                </div>
+              </mat-grid-tile>
+<!--               <mat-grid-tile [colspan]="1">
+                <div class="team-pic-inside-grid">
+                  <img src='{{ team.logos[0] }}' height="26px">
+                </div>
+              </mat-grid-tile> -->
+              <mat-grid-tile [colspan]="1">
+                <div class="text-inside-grid">
+                  {{ game.quarter }}
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="4">
+                <div class="text-inside-grid">
+                  {{ game.away_team }} : {{ game.away_score }}
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="1">
+                <div class="text-inside-grid">
+                  @
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="4">
+                <div class="text-inside-grid">
+                  {{ game.home_team }} : {{ game.home_score }}
+                </div>
+              </mat-grid-tile>
+            </mat-grid-list>  
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>  
+    </div>
+  </div>
+<!--   <div class="column" *ngIf="selectedTeam" style="padding-left: 20px; padding-right: 20px;">
+    <div class="score-window">
+      <div style="height: 70px; padding-bottom: 15px; vertical-align: middle;">
+        <img src='{{ dataSource[0].logos[0] }}' style="height: 50px;">
+        <mat-label style="padding-left: 20px; font-size: xx-large; font-weight: bolder;">{{ dataSource[0].school }}</mat-label>
+      </div>
+      <mat-grid-list cols="12" rowHeight="30px">
+        <mat-grid-tile [colspan]="3"><strong class="text-inside-grid">Week</strong></mat-grid-tile>
+        <mat-grid-tile [colspan]="1"></mat-grid-tile>
+        <mat-grid-tile [colspan]="4"><strong>Opponent</strong></mat-grid-tile>
+        <mat-grid-tile [colspan]="4"><strong>Result</strong></mat-grid-tile>
+      </mat-grid-list>
+      <div *ngFor="let game of dataSource[0].games">
+        <mat-grid-list cols="12" rowHeight="30px">
+          <mat-grid-tile [colspan]="1">
+            <div class="text-inside-grid">
+              <strong>{{ game.week }}: </strong>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="2">
+            <div class="text-inside-grid">
+              {{ game.startDate | date:'M/d'}}
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1">
+            <div class="team-pic-inside-grid">
+              <img src='{{ game.opponentLogo ? game.opponentLogo[0] : null }}' height="26px">
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="4">
+            <div class="text-inside-grid">
+              {{ game.homeOrAway=='home' ? 'vs' : '@ ' }} {{ game.opponentRank ? game.opponentRank+' ' : null }}{{ game.opponentName }} 
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1">
+            <div *ngIf="game.WLT == 'Suspended'">
+            </div>
+            <div *ngIf="game.WLT != 'Suspended'" [ngClass]="{'win': game.WLT == 'W', 'loss': game.WLT == 'L', 'other': game.WLT == 'T' || game.WLT == 'Suspended' }">
+              {{ game.WLT }}
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="3">
+            <div *ngIf="game.WLT == 'Suspended'">
+              <div *ngIf="(game.startDate | date:'yyyy-MM-dd') >= (todaysDate | date:'yyyy-MM-dd')">             
+              </div>
+              <div [ngClass]="{'win': game.WLT == 'W', 'loss': game.WLT == 'L', 'other': game.WLT == 'T' || game.WLT == 'Suspended' }" *ngIf="(game.startDate | date:'yyyy-MM-dd') < (todaysDate | date:'yyyy-MM-dd')">
+                Suspended
+              </div>
+            </div>
+            <div *ngIf="game.WLT != 'Suspended'">
+              {{ game.teamScore }} - {{ game.opponentScore }}
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>  
+      </div>  
+    </div>
+  </div> -->
+</div>

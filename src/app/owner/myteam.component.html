@@ -1,0 +1,32 @@
+<div ng-init="count=0" class="show-teams">
+    <div>
+        <div style="padding-bottom: 10px;">
+            <button (click)="switchToggle($event)" id="newTeam" [disabled]="disableButtons" style="outline: none; align-items:center;" mat-fab color="primary">
+                <mat-icon inline="true" style="font-size: 50px;">add</mat-icon>
+            </button>
+            <mat-label style="font-size:xx-large; vertical-align: middle;">
+                New Team
+            </mat-label>            
+        </div>
+        <div>
+            <mat-expansion-panel [expanded]="newTeam">
+                <app-newLeague style="padding-top: 10px; padding-bottom: 10px;"></app-newLeague>
+            </mat-expansion-panel>            
+        </div>
+    </div>
+    <div style="padding-top: 20px;">
+        <div style="padding-bottom: 10px;">
+            <button (click)="switchToggle($event)" id="myTeams" [disabled]="disableButtons" style="outline: none; align-items:center;" mat-fab color="primary">
+                <mat-icon inline="true" style="font-size: 50px;">list</mat-icon>
+            </button>
+            <mat-label style="font-size:xx-large; vertical-align: middle;">
+                My Teams
+            </mat-label>            
+        </div>
+        <div>
+            <mat-expansion-panel [expanded]="myTeams">
+                <app-displayLeagues *ngIf="myTeams" style="padding-top: 10px; padding-bottom: 10px;"></app-displayLeagues>
+            </mat-expansion-panel>            
+        </div>
+    </div>
+</div>

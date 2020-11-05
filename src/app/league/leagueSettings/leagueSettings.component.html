@@ -1,0 +1,45 @@
+<div *ngIf="inProgress">
+  <mat-spinner [diameter]="200" style="margin: 0 auto; top: 50px"></mat-spinner>
+</div>
+<div *ngIf="!inProgress" class="container" style="margin-left: 0;">
+  <div class="row" style="width: 100%;">
+    <div style="width: 175px; float: left;">
+      <div style="margin: 0; height: 600px; width: 100%; margin-top: 25px;">
+        <mat-button-toggle-group 
+          class="setting-viewer-style"
+          ngModel
+          id="leagueOwners"
+          name="leagueOwners" 
+          #group="matButtonToggleGroup"
+          vertical>
+          <mat-button-toggle *ngFor="let i of settingPages, index as a " value='{{ a }}' style="margin: 0" >{{ i }}</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="col">
+      <div *ngIf="group.value == 0">
+        <ul>
+          <li>{{thisLeagueInfo.leagueName}}</li>
+          <li>{{thisLeagueInfo.leagueTypeName}}</li>
+          <li>{{thisLeagueInfo.leaguePrivate}}</li>
+        </ul>        
+      </div>
+      <div *ngIf="group.value == 1">
+        Owners:
+        <ul>
+          <li *ngFor="let owner of thisLeagueInfo.owners">{{owner.ownerFirstName}} {{owner.ownerLastName}}: {{owner.thisLeagueTeamName}}{{owner.commissioner ? '*':'' }}</li>
+        </ul>
+      </div>
+      <div *ngIf="group.value == 2">
+        <div *ngIf="!thisLeagueDraftInfo.draftID">
+          <button (click)="addLeagueDraftRoom()">Create Draft Room</button>
+        </div>
+        <app-draftOrderSettings *ngIf="thisLeagueDraftInfo.draftID" [draftOrderInput]="draftOrderInput"></app-draftOrderSettings>
+      </div>
+      <div *ngIf="group.value == 3">
+        League Setting
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+<div *ngIf="inProgress && !errorMessage">
+  <mat-spinner [diameter]="200" style="margin: 0 auto; top: 50px"></mat-spinner>
+</div>
+<div *ngIf="!inProgress && errorMessage">
+  <h4>{{ errorMessage }}</h4>
+</div>
+<div *ngIf="!inProgress && !errorMessage && results" class="row" style="width: 100%;">
+  <div style="width: 250px; float: left;">
+    <div style="margin: 0; height: 600px; width: 100%; margin-top: 25px;">
+      <mat-button-toggle-group 
+        class="week-viewer-style"
+        ngModel
+        id="scheduleWeeks"
+        name="scheduleWeeks" 
+        #group="matButtonToggleGroup"
+        vertical>
+        <mat-button-toggle *ngFor="let i of organized_results, index as a " value="selectedWeekIndex" style="margin: 0" (click)="onSelectWeek(a)">{{ i.week_date }}</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+  <div style="width:100%;" class="col">
+    <div style="margin: 0; height: 600px; width: 100%; margin-top: 25px;">
+      <div *ngFor="let game of selectedWeek">
+        <mat-grid-list cols="12" rowHeight="30px">
+          <mat-grid-tile [colspan]="3">
+            <div class="text-inside-grid">
+              {{ game.game_date }}
+            </div>
+          </mat-grid-tile>
+<!--           <mat-grid-tile [colspan]="1">
+            <div class="team-pic-inside-grid">
+              <img src='{{ team.logos[0] }}' height="26px">
+            </div>
+          </mat-grid-tile> -->
+          <mat-grid-tile [colspan]="1">
+            <div class="text-inside-grid">
+              {{ game.quarter }}
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1">
+            <div class="text-inside-grid">
+              {{ game.time_remaining }}
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="2">
+            <div class="text-inside-grid">
+              {{ game.away_team }} : 
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1">
+            <div class="text-inside-grid">
+              {{ game.away_score }}
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1">
+            <div class="text-inside-grid">
+              @
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1">
+            <div class="text-inside-grid">
+              {{ game.home_score }}
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="2">
+            <div class="text-inside-grid">
+              : {{ game.home_team }}
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>  
+      </div>
+    </div>
+  </div>
+  
+<!--   <div class="column" style="width: 100%; padding-left: 20px; padding-right: 20px;">
+    <div style="margin-left:20px;">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let week of organized_results">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ week.week_date }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-grid-list cols="12" rowHeight="30px">
+            <mat-grid-tile [colspan]="3"></mat-grid-tile>
+            <mat-grid-tile [colspan]="4"><strong>Away Team</strong></mat-grid-tile>
+            <mat-grid-tile [colspan]="1"></mat-grid-tile>
+            <mat-grid-tile [colspan]="4"><strong>Home Team</strong></mat-grid-tile>
+          </mat-grid-list>
+          <div *ngFor="let game of week.week_games">
+            <mat-grid-list cols="12" rowHeight="30px">
+              <mat-grid-tile [colspan]="2">
+                <div class="text-inside-grid">
+                  {{ game.game_date }}
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="1">
+                <div class="team-pic-inside-grid">
+                  <img src='{{ team.logos[0] }}' height="26px">
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="1">
+                <div class="text-inside-grid">
+                  {{ game.quarter }}
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="4">
+                <div class="text-inside-grid">
+                  {{ game.away_team }} : {{ game.away_score }}
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="1">
+                <div class="text-inside-grid">
+                  @
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="4">
+                <div class="text-inside-grid">
+                  {{ game.home_team }} : {{ game.home_score }}
+                </div>
+              </mat-grid-tile>
+            </mat-grid-list>  
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>  
+    </div>
+  </div> -->
+</div>

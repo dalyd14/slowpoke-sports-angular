@@ -1,0 +1,19 @@
+.newLeague-type-toggles {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+mat-button-toggle-group {
+    width: 100%;
+}
+  
+mat-button-toggle {
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+}

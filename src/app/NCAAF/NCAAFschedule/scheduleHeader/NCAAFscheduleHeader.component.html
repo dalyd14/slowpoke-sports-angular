@@ -1,0 +1,11 @@
+<div style="width: 100%">
+  <mat-form-field>
+    <mat-label>Select Year</mat-label>
+    <mat-select (selectionChange)="onSelectedYearChanged()" [(ngModel)]="selectedScheduleYear">
+      <mat-option *ngFor="let year of availableYears" [value]="year">
+        {{year}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<router-outlet></router-outlet>

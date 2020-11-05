@@ -1,0 +1,8 @@
+<div class=auth-type-toggles>
+    <mat-button-toggle-group name="authenticationType" #group="matButtonToggleGroup" value="login">
+        <mat-button-toggle value="login">I'm Already an Owner</mat-button-toggle>
+        <mat-button-toggle value="register">I'm a New Owner</mat-button-toggle>
+    </mat-button-toggle-group>    
+</div>
+<app-login *ngIf="group.value=='login'"></app-login>
+<app-register *ngIf="group.value=='register'"></app-register>
